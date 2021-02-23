@@ -20,11 +20,11 @@ class HomeController {
     } else if (salario >= 1903.99 && salario <= 2826.65) {
       return ((salario * 7.50) / 100) - 142.80;
     } else if (salario >= 2826.65 && salario <= 3751.05) {
-      return (salario * 15) / 100;
+      return ((salario * 15) / 100) - 354.80;
     } else if (salario >= 3751.06 && salario <= 4664.68) {
-      return (salario * 22.5) / 100;
+      return ((salario * 22.5) / 100) - 636.13;
     } else if (salario > 4664.68) {
-      return (salario * 27.5) / 100;
+      return ((salario * 27.5) / 100) - 869.36;
     }
   }
 }
