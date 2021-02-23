@@ -18,7 +18,7 @@ class HomeController {
 
   calcularIRRF(double salario) {
     if (salario <= 1903.98) {
-      return 0;
+      return 0.0;
     } else if (salario >= 1903.99 && salario <= 2826.65) {
       return ((salario * 7.50) / 100) - 142.80;
     } else if (salario >= 2826.65 && salario <= 3751.05) {
