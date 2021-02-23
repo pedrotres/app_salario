@@ -11,6 +11,8 @@ class HomeController {
       return (salario * 12) / 100;
     } else if (salario >= 3305.23 && salario <= 6433.57) {
       return (salario * 14) / 100;
+    } else if (salario > 6433.57) {
+      return (salario - 751.97);
     }
   }
 

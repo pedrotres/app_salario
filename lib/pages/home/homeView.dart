@@ -76,7 +76,7 @@ class _HomeState extends State<Home> {
             ),
             ListTile(
               leading: Text('Salário Bruto: '),
-              trailing: Text('R\$ 1500,00'),
+              trailing: Text('R\$ ${salarioController.text}'),
             ),
             ListTile(
               leading: Text('INSS: '),
