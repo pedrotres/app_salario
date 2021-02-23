@@ -60,6 +60,7 @@ class _HomeState extends State<Home> {
                   width: 20,
                   height: 20,
                   child: TextFormField(
+                    keyboardType: TextInputType.number,
                     controller: salarioController,
                     textAlign: TextAlign.start,
                     inputFormatters: [
