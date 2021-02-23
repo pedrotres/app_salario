@@ -1,3 +1,4 @@
+import 'package:app_salario/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/services.dart';
@@ -13,20 +14,17 @@ class _HomeState extends State<Home> {
   final salarioController = TextEditingController();
   final inssController = TextEditingController();
   final irffController = TextEditingController();
-  final salarioLiquido = TextEditingController();
+  final salarioLiquidoController = TextEditingController();
 
   void calcular(double salario) {
-    print(salario);
-    inssController.text =
-        HomeController.controller.calculaINSS(salario).toString();
-    irffController.text = HomeController.controller
-        .calcularIRRF(salario - HomeController.controller.calculaINSS(salario))
-        .toString();
-    print(inssController.text);
-    salarioLiquido.text = (salario -
-            double.parse(inssController.text) -
-            double.parse(irffController.text))
-        .toString();
+    double inss = HomeController.controller.calculaINSS(salario);
+    double irff = HomeController.controller.calcularIRRF(salario - inss);
+    double salarioLiquido = salario - irff - inss;
+
+    irffController.text = Utils.functions.roundDown(irff, 2).toString();
+    inssController.text = Utils.functions.roundDown(inss, 2).toString();
+    salarioLiquidoController.text =
+        Utils.functions.roundDown(salarioLiquido, 2).toString();
     setState(() {});
     //print(irffController.text);
   }
@@ -80,11 +78,25 @@ class _HomeState extends State<Home> {
             ),
             ListTile(
               leading: Text('INSS: '),
-              trailing: Text('R\$: ${inssController.text}'),
+              trailing: Text(
+                'R\$: ${inssController.text}',
+                style: TextStyle(
+                  color: Colors.red,
+                ),
+              ),
             ),
             ListTile(
               leading: Text('IRRF: '),
-              trailing: Text('R\$: ${irffController.text}'),
+              trailing: Text(
+                'R\$: ${irffController.text}',
+                style: TextStyle(
+                  color: Colors.red,
+                ),
+              ),
+            ),
+            ListTile(
+              leading: Text('Salário líquido: '),
+              trailing: Text('R\$: ${salarioLiquidoController.text}'),
             ),
           ],
         ));
